@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import data from "../data"
+import data from "../../../backend/data"
 import Rating from "../components/Rating";
 
 const ProductScreen = (props) => {
@@ -17,10 +17,10 @@ const ProductScreen = (props) => {
         <div>
             <Link to="/">Back to results</Link>
             <div className="row top">
-                <div className="col-1">
+                <div className="col-2">
                     <img className="igm larger" src= {product.image} alt={product.name}></img>
                 </div>
-                <div className="col-2">
+                <div className="col-1">
                     <ul>
                         <li>
                             <h1>{product.name}</h1>
@@ -35,7 +35,7 @@ const ProductScreen = (props) => {
                         </li>
                     </ul>
                 </div>
-                <div className="col-2">
+                <div className="col-1">
                     <div className="card card-body">
                         <ul>
                             <li>
@@ -63,7 +63,10 @@ const ProductScreen = (props) => {
                                 </div>
                             </li>
                             <li>
-                                <button className="primary block">Add to cart</button>
+                                {product.countInStock === 0 
+                                ? <button disabled >Item Unavailable</button>
+                                : <button className="primary block">Add to cart</button>}
+                                
                             </li>
                         </ul>
                     </div>
